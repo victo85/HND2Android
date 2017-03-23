@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import com.daniel.hnd2.activities.EditActivity;
 import com.daniel.hnd2.Preferencias;
 import com.daniel.hnd2.R;
-import com.daniel.hnd2.activities.RegistroActivity;
 import com.daniel.hnd2.beans.UsuarioBean;
 
 import java.net.URI;

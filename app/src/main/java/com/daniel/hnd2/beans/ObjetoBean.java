@@ -1,7 +1,5 @@
 package com.daniel.hnd2.beans;
 
-import android.widget.ImageView;
-
 import java.io.Serializable;
 
 /**

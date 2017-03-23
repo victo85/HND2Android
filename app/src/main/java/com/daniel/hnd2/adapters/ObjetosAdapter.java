@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.daniel.hnd2.R;
 import com.daniel.hnd2.beans.ObjetoBean;
-import com.daniel.hnd2.beans.PersonajeBean;
 
 import java.util.List;
 

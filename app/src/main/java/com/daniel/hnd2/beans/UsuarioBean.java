@@ -1,7 +1,5 @@
 package com.daniel.hnd2.beans;
 
-import android.net.Uri;
-
 import com.google.gson.Gson;
 
 import java.io.Serializable;

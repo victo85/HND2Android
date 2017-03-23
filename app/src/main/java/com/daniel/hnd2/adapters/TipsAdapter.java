@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.daniel.hnd2.R;
-import com.daniel.hnd2.beans.PersonajeBean;
 import com.daniel.hnd2.beans.TipBean;
 
 import java.util.List;

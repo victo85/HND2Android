@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.daniel.hnd2.activities.LoginActivity;
-import com.daniel.hnd2.beans.UsuarioBean;
 import com.daniel.hnd2.fragments.AjustesFragment;
 import com.daniel.hnd2.fragments.DescripcionFragment;
 import com.daniel.hnd2.fragments.ObjetosFragment;
