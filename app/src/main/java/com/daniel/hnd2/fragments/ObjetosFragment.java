@@ -14,7 +14,7 @@ import com.daniel.hnd2.R;
 import com.daniel.hnd2.activities.ObjetoActivity;
 import com.daniel.hnd2.adapters.ObjetosAdapter;
 import com.daniel.hnd2.beans.ObjetoBean;
-import com.daniel.hnd2.test.ModeloObjeto;
+import com.daniel.hnd2.test.Modelo;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public class ObjetosFragment extends Fragment implements AdapterView.OnItemClick
         View view = inflater.inflate(R.layout.fragment_objetos, container, false);
 
         listObjetos = (ListView) view.findViewById(R.id.listObjetos);
-        objetos = ModeloObjeto.getObjetos();
+        objetos = Modelo.getObjetos();
 
         ObjetosAdapter adapter = new ObjetosAdapter(getActivity(), R.layout.item, objetos);
         listObjetos.setAdapter(adapter);

@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.daniel.hnd2.test.ModeloPersonaje;
 import com.daniel.hnd2.R;
 import com.daniel.hnd2.activities.PersonajeActivity;
 import com.daniel.hnd2.adapters.PersonajesAdapter;
 import com.daniel.hnd2.beans.PersonajeBean;
+import com.daniel.hnd2.test.Modelo;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class PersonajesFragment extends Fragment implements AdapterView.OnItemCl
         View view = inflater.inflate(R.layout.fragment_personajes, container, false);
 
         listPersonajes = (ListView) view.findViewById(R.id.listPersonajes);
-        personajes = ModeloPersonaje.getPersonajes();
+        personajes = Modelo.getPersonajes();
         PersonajesAdapter adapter = new PersonajesAdapter(getActivity(), R.layout.item, personajes);
         listPersonajes.setAdapter(adapter);
         listPersonajes.setOnItemClickListener(this);

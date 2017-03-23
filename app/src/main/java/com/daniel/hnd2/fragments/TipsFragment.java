@@ -11,12 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.daniel.hnd2.R;
-import com.daniel.hnd2.activities.ObjetoActivity;
 import com.daniel.hnd2.activities.TipActivity;
 import com.daniel.hnd2.adapters.TipsAdapter;
-import com.daniel.hnd2.beans.ObjetoBean;
 import com.daniel.hnd2.beans.TipBean;
-import com.daniel.hnd2.test.ModeloTip;
+import com.daniel.hnd2.test.Modelo;
 
 import java.util.ArrayList;
 
@@ -41,7 +39,7 @@ public class TipsFragment extends Fragment implements AdapterView.OnItemClickLis
         View view = inflater.inflate(R.layout.fragment_tips, container, false);
 
         listTips = (ListView) view.findViewById(R.id.listTips);
-        tips = ModeloTip.getTips();
+        tips = Modelo.getTips();
 
         TipsAdapter adapter = new TipsAdapter(getActivity(), R.layout.item, tips);
         listTips.setAdapter(adapter);
