@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_objeto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.daniel.hnd2.activities.ObjetoActivity"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/toolbar" />
+
+    <ImageView android:id="@+id/imgObjeto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="13dp"/>
+
+    <TextView android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="13dp"
+        android:textSize="30dp"/>
+
+    <TextView android:id="@+id/txtDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="13dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton android:id="@+id/btn_twitter"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_twitter" />
+
+        <ImageButton android:id="@+id/btn_facebook"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_facebook" />
+
+        <ImageButton android:id="@+id/btn_whatsapp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_whatsapp" />
+
+        <ImageButton android:id="@+id/btn_compartir"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_share" />
+
+    </LinearLayout>
+
+</LinearLayout>
