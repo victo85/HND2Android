@@ -28,11 +28,13 @@ import java.net.URI;
 public class PerfilFragment extends Fragment implements View.OnClickListener {
 
     private TextView txtNombre, txtApellidos, txtUsuario;
-    private ImageButton btn_edit, btn_editImg;
+    private ImageButton btn_edit, btn_editImg, btn_editCamera;
     private ImageView imgPerfil;
 
     private final int PICTURE_KEY = 1;
     private UsuarioBean usuarioBean;
+
+    static final int REQUEST_IMAGE_CAPTURE = 2;
 
 
     public PerfilFragment() {
@@ -51,6 +53,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         txtUsuario = (TextView) view.findViewById(R.id.txtUsuario);
         btn_edit = (ImageButton) view.findViewById(R.id.btn_edit);
         btn_editImg = (ImageButton) view.findViewById(R.id.btn_editImg);
+        btn_editCamera = (ImageButton) view.findViewById(R.id.btn_editCamera);
         imgPerfil = (ImageView) view.findViewById(R.id.imgPerfil);
 
         Preferencias preferencias = new Preferencias(getActivity());
@@ -68,6 +71,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
         btn_edit.setOnClickListener(this);
         btn_editImg.setOnClickListener(this);
+        btn_editCamera.setOnClickListener(this);
 
         return view;
     }
@@ -112,6 +116,12 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(intentGaleria.createChooser(intentGaleria,"Selecciona una app de imagen"), PICTURE_KEY);
 
                 break;
+
+            case R.id.btn_editCamera:
+
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                break;
         }
     }
 
@@ -121,6 +131,17 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
         switch (requestCode){
             case PICTURE_KEY:
+                if(resultCode == getActivity().RESULT_OK){
+                    Uri path = data.getData();
+                    imgPerfil.setImageURI(path);
+                    usuarioBean.setImgPerfil(path.toString());
+                    Preferencias preferencias = new Preferencias(getActivity());
+                    preferencias.setUsuario(usuarioBean);
+
+                }
+                break;
+
+            case REQUEST_IMAGE_CAPTURE:
                 if(resultCode == getActivity().RESULT_OK){
                     Uri path = data.getData();
                     imgPerfil.setImageURI(path);

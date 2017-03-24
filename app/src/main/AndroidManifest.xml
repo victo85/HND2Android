@@ -7,8 +7,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme2">
+        <activity android:name=".MainActivity"
+
+            android:theme="@style/AppTheme">
 
         </activity>
         <activity android:name=".activities.LoginActivity">
@@ -26,5 +28,8 @@
     </application>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
 </manifest>
