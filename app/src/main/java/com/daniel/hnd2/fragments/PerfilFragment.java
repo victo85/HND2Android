@@ -1,18 +1,14 @@
 package com.daniel.hnd2.fragments;
 
 import android.Manifest;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v13.app.FragmentCompat;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -33,7 +29,6 @@ import com.daniel.hnd2.beans.UsuarioBean;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 
 public class PerfilFragment extends Fragment implements View.OnClickListener {
@@ -42,15 +37,13 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     private ImageButton btn_edit, btn_editImg, btn_editCamera;
     private ImageView imgPerfil;
 
-
     private UsuarioBean usuarioBean;
     private Uri mMediaUri;
 
     private static final int TAKE_PICTURE = 0;
     private final int PICTURE_KEY = 1;
-    static final int MEDIA_TYPE_IMAGE = 2;
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 3;
 
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -78,7 +71,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         txtApellidos.setText("Apellidos: " + usuarioBean.getApellidos());
         txtUsuario.setText("Usuario: " + usuarioBean.getUsuario());
 
-        if(usuarioBean.getImgPerfil() == null){
+        if(usuarioBean.getImgPerfil() == null){ /* Si aun no hemos subido una foto de perfil, se colocará la imagen de usuario por defecto */
             imgPerfil.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.imagen_usuario));
         }else{
             imgPerfil.setImageURI(Uri.parse(usuarioBean.getImgPerfil()));
@@ -116,25 +109,22 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), EditActivity.class);
 
                 startActivity(intent);
-
                 break;
 
             case R.id.btn_editImg:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //Verifica permisos para Android 6.0+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /* Verificamos permisos para Android 6.0+ */
 
-                    int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
-                            Manifest.permission.READ_EXTERNAL_STORAGE);
-
-                    if(permissionCheck == PackageManager.PERMISSION_GRANTED){
+                    if(ContextCompat.checkSelfPermission(getActivity(),
+                            Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){/* Si los permisos de lectura están otorgados, se abre la galería */
                         abrirGaleria();
                     }else{
-                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, /* Si no están otorgados, los pedimos */
                                 MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                     }
-                }else{
+
+                }else{ /* Si la versión es inferior a Android 6.0 abrimos la galería directamente */
                     abrirGaleria();
                 }
-
                 break;
 
             case R.id.btn_editCamera:
@@ -148,33 +138,31 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode){
-            case PICTURE_KEY:
+            case PICTURE_KEY: /* Recogemos el URI del intent de la galería, lo asociamos a la imagen de perfil, lo guardamos en UsuarioBean y lo volvemos a guardar en preferencias */
                 if(resultCode == getActivity().RESULT_OK){
                     Uri path = data.getData();
                     imgPerfil.setImageURI(path);
                     usuarioBean.setImgPerfil(path.toString());
+
                     Preferencias preferencias = new Preferencias(getActivity());
                     preferencias.setUsuario(usuarioBean);
-
                 }
                 break;
 
-            case TAKE_PICTURE:
+            case TAKE_PICTURE: /* Recogemos el URI, lo asociamos a la imagen de perfil, lo guardamos en UsuarioBean y lo volvemos a guardar en preferencias */
+                if(resultCode == getActivity().RESULT_OK){
+                    mMediaUri = data.getData();
+                    imgPerfil.setImageURI(mMediaUri);
+                    usuarioBean.setImgPerfil(mMediaUri.toString());
 
-                mMediaUri = data.getData();
-
-                imgPerfil.setImageURI(mMediaUri);
-
-                usuarioBean.setImgPerfil(mMediaUri.toString());
-                Preferencias preferencias = new Preferencias(getActivity());
-                preferencias.setUsuario(usuarioBean);
-
-
+                    Preferencias preferencias = new Preferencias(getActivity());
+                    preferencias.setUsuario(usuarioBean);
+                }
                 break;
         }
     }
 
-    private Uri getOutputMediaFileUri(int mediaTypeImage) {
+    private Uri getOutputMediaFileUri() { /* Método que crea un archivo temporal para almacenar la imagen y devuelve el URI del mismo */
 
         File mediaStorageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
@@ -199,31 +187,31 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 mediaFile);
     }
 
-    private void abrirCamara() {
-        mMediaUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+    private void abrirCamara() { /* Método que  abre la cámara mediante un intent pasándole la ruta donde almacenarla */
+        mMediaUri = getOutputMediaFileUri();
 
         Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         photoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mMediaUri);
         startActivityForResult(photoIntent, TAKE_PICTURE);
     }
 
-    private void abrirGaleria(){
+    private void abrirGaleria(){ /* Método que abre la galería mediante un intent y que permite elegir entre las aplicaciones de galería instaladas */
         Intent intentGaleria = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intentGaleria.setType("image/*");
         startActivityForResult(intentGaleria.createChooser(intentGaleria, "Selecciona una app de imagen"), PICTURE_KEY);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) { /* Método llamado cuando se solicitan los permisos */
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { /* Si se aceptan los permisos, abrimos la galería */
                     abrirGaleria();
 
                 } else {
-                    Toast.makeText(getActivity(), "Debes aceptar los permisos para acceder a la galería", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Debes aceptar los permisos para acceder a la galería", Toast.LENGTH_SHORT).show(); /* Si no se aceptan, avisamos al usuario de que es necesario hacerlo */
                 }
                 return;
             }
