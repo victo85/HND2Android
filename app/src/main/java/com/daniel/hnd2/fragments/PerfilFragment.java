@@ -118,7 +118,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                             Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){/* Si los permisos de lectura están otorgados, se abre la galería */
                         abrirGaleria();
                     }else{
-                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, /* Si no están otorgados, los pedimos */
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, /* Si no están otorgados, los pedimos y se llama al método onRequestPermissionsResult */
                                 MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                     }
 
