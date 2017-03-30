@@ -187,7 +187,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 mediaFile);
     }
 
-    private void abrirCamara() { /* Método que  abre la cámara mediante un intent pasándole la ruta donde almacenarla */
+    private void abrirCamara() { /* Método que  abre la cámara mediante un intent pasándole la ruta donde tendrá que almacenarla */
         mMediaUri = getOutputMediaFileUri();
 
         Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
