@@ -48,14 +48,14 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
         if(usuario!=null && nombre!=null && apellidos!=null && password!=null &&
                 !usuario.isEmpty() && !nombre.isEmpty() && !apellidos.isEmpty() && !password.isEmpty()){
-            //email formato correcto, pass y pass2 iguales
+
             UsuarioBean usuarioBean = new UsuarioBean(nombre, apellidos, usuario, password);
 
             Preferencias preferencias = new Preferencias(RegistroActivity.this);
             preferencias.setUsuario(usuarioBean);
 
             Toast.makeText(RegistroActivity.this,
-                    "El usuario se ha guardado correctamente",
+                    R.string.usuario_guardado,
                     Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
@@ -63,7 +63,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
             finish();
         }else{
             Toast.makeText(RegistroActivity.this,
-                    "Todos los datos son obligatorios",
+                    R.string.datos_requeridos,
                     Toast.LENGTH_SHORT).show();
         }
     }

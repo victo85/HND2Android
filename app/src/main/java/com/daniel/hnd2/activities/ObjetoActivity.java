@@ -62,7 +62,7 @@ public class ObjetoActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intentCompartir = new Intent(Intent.ACTION_SEND);
                 intentCompartir.setType("text/plain");
                 intentCompartir.putExtra(Intent.EXTRA_TEXT, detalle);
-                startActivity(Intent.createChooser(intentCompartir, "Compartir en..."));
+                startActivity(Intent.createChooser(intentCompartir, getString(R.string.compartir_en)));
                 break;
 
             case R.id.btn_twitter:

@@ -66,7 +66,7 @@ public class PersonajeActivity extends AppCompatActivity implements View.OnClick
                 Intent intentCompartir = new Intent(Intent.ACTION_SEND);
                 intentCompartir.setType("text/plain");
                 intentCompartir.putExtra(Intent.EXTRA_TEXT, detalle);
-                startActivity(Intent.createChooser(intentCompartir, "Compartir en..."));
+                startActivity(Intent.createChooser(intentCompartir, getString(R.string.compartir_en)));
                 break;
 
             case R.id.btn_twitter:

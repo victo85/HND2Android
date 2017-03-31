@@ -68,7 +68,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             preferencias.setUsuario(usuarioBean);
 
             Toast.makeText(EditActivity.this,
-                    "Los cambios se han guardado correctamente",
+                    R.string.cambios_guardados,
                     Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(EditActivity.this, MainActivity.class);
@@ -76,7 +76,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
             finish();
         }else{
-            Toast.makeText(EditActivity.this, "Datos obligatorios", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditActivity.this, R.string.datos_requeridos, Toast.LENGTH_SHORT).show();
         }
     }
 }

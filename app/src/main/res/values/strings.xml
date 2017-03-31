@@ -18,4 +18,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="compartir">Compartir</string>
     <string name="guardarCambios">Guardar cambios</string>
+    <string name="cambios_guardados">Los cambios se han guardado correctamente</string>
+    <string name="datos_requeridos">Datos obligatorios</string>
+    <string name="datos_incorrectos">Datos incorrectos</string>
+    <string name="usuario_no_existe">No existe el usuario</string>
+    <string name="compartir_en">Compartir en...</string>
+    <string name="usuario_guardado">El usuario se ha guardado correctamente</string>
 </resources>
