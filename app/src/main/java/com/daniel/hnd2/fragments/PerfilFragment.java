@@ -151,7 +151,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
             case TAKE_PICTURE: /* Recogemos el URI, lo asociamos a la imagen de perfil, lo guardamos en UsuarioBean y lo volvemos a guardar en preferencias */
                 if(resultCode == getActivity().RESULT_OK){
-                    mMediaUri = data.getData();
+
                     imgPerfil.setImageURI(mMediaUri);
                     usuarioBean.setImgPerfil(mMediaUri.toString());
 

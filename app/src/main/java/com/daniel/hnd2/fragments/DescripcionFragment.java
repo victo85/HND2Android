@@ -30,7 +30,8 @@ public class DescripcionFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_descripcion, container, false);
 
-        descripcion = "Juego de naves para dispositivos móviles.";
+        descripcion = "Juego de naves para dispositivos móviles. " +
+                "Está compuesto de varios niveles en los que va aumentando la dificultad. La misión es derrotar a todas las naves enemigas que van apareciendo en pantalla, hasta llegar al nivel del Boss.";
 
         txtDescripcion = (TextView) view.findViewById(R.id.txtDescripcion);
         btn_compartir = (ImageButton) view.findViewById(R.id.btn_compartir);

@@ -36,6 +36,7 @@ public class PersonajesFragment extends Fragment implements AdapterView.OnItemCl
 
         listPersonajes = (ListView) view.findViewById(R.id.listPersonajes);
         personajes = Modelo.getPersonajes();
+
         PersonajesAdapter adapter = new PersonajesAdapter(getActivity(), R.layout.item, personajes);
         listPersonajes.setAdapter(adapter);
         listPersonajes.setOnItemClickListener(this);

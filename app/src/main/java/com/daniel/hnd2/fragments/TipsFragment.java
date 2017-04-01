@@ -41,7 +41,7 @@ public class TipsFragment extends Fragment implements AdapterView.OnItemClickLis
         listTips = (ListView) view.findViewById(R.id.listTips);
         tips = Modelo.getTips();
 
-        TipsAdapter adapter = new TipsAdapter(getActivity(), R.layout.item, tips);
+        TipsAdapter adapter = new TipsAdapter(getActivity(), R.layout.item_tip, tips);
         listTips.setAdapter(adapter);
         listTips.setOnItemClickListener(this);
 

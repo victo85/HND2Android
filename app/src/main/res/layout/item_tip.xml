@@ -13,10 +13,5 @@
         android:text="Prueba"
         android:layout_margin="20dp"/>
 
-    <ImageView android:id="@+id/imgItem"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:src="@drawable/ametralladora" />
-
 
 </LinearLayout>
