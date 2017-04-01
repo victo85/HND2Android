@@ -31,7 +31,7 @@ public class PersonajeActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_personaje);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar); /* Coloca el toolbar en esta actividad */
 
         PersonajeBean personajeBean = (PersonajeBean) getIntent().getSerializableExtra(PersonajesFragment.PERSONAJE_KEY);
 

@@ -46,7 +46,6 @@ public class DescripcionFragment extends Fragment implements View.OnClickListene
         btn_facebook.setOnClickListener(this);
         btn_whatsapp.setOnClickListener(this);
 
-
         return view;
     }
 
@@ -65,7 +64,7 @@ public class DescripcionFragment extends Fragment implements View.OnClickListene
 
     public static DescripcionFragment newInstance() {
         return new DescripcionFragment();
-    }
+    } /* Método utilizado para crear una instancia del fragment */
 
     @Override
     public void onClick(View v) {

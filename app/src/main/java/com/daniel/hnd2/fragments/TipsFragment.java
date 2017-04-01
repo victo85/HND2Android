@@ -30,7 +30,7 @@ public class TipsFragment extends Fragment implements AdapterView.OnItemClickLis
 
     public static TipsFragment newInstance(){
         return new TipsFragment();
-    }
+    } /* Método utilizado para crear una instancia del fragment */
 
 
     @Override

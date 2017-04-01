@@ -99,7 +99,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
     public static PerfilFragment newInstance() {
         return new PerfilFragment();
-    }
+    } /* Método utilizado para crear una instancia del fragment */
 
     @Override
     public void onClick(View v) {

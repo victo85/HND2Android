@@ -27,7 +27,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_registro);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar); /* Coloca el toolbar en esta actividad */
 
         editNombre = (EditText) findViewById(R.id.editNombre);
         editApellidos = (EditText) findViewById(R.id.editApellidos);

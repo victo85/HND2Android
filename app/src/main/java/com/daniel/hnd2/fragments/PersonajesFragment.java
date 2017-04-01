@@ -56,7 +56,7 @@ public class PersonajesFragment extends Fragment implements AdapterView.OnItemCl
 
     public static PersonajesFragment newInstance() {
         return new PersonajesFragment();
-    }
+    } /* Método utilizado para crear una instancia del fragment */
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {

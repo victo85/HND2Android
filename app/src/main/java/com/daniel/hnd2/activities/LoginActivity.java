@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Preferencias preferencias = new Preferencias(LoginActivity.this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar); /* Coloca el toolbar en esta actividad */
 
         if(preferencias.isLogin() == false){
 

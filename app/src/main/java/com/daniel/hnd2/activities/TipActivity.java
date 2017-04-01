@@ -30,7 +30,7 @@ public class TipActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_tip);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar); /* Coloca el toolbar en esta actividad */
 
         TipBean tipBean = (TipBean) getIntent().getSerializableExtra(TipsFragment.TIP_KEY);
 

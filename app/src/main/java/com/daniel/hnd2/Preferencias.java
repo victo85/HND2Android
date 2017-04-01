@@ -18,7 +18,7 @@ public class Preferencias {
         this.context = context;
     }
 
-    public void setUsuario(UsuarioBean usuario){
+    public void setUsuario(UsuarioBean usuario){ /* Método al que se le pasa un usuario para almacenarlo en preferencias */
         String usuarioJson = usuario.toJson();
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCIAS,
@@ -29,7 +29,7 @@ public class Preferencias {
         editor.commit();
     }
 
-    public UsuarioBean getUsuario(){
+    public UsuarioBean getUsuario(){ /* Método que devuelve el usuario almacenado en preferencias */
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCIAS,
                 Context.MODE_PRIVATE);
 
@@ -38,7 +38,7 @@ public class Preferencias {
 
     }
 
-    public void setLogin(boolean login){
+    public void setLogin(boolean login){ /* Método para indicarle a las preferencias si estamos logueados o no */
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCIAS,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -48,7 +48,7 @@ public class Preferencias {
         editor.commit();
     }
 
-    public boolean isLogin(){
+    public boolean isLogin(){ /* Método que nos devuelve como valor boleeano si el usuario se encuentra logueado o no */
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCIAS,
                 Context.MODE_PRIVATE);
 

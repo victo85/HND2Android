@@ -67,14 +67,11 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             Preferencias preferencias = new Preferencias(EditActivity.this);
             preferencias.setUsuario(usuarioBean);
 
-            Toast.makeText(EditActivity.this,
+            Toast.makeText(this,
                     R.string.cambios_guardados,
                     Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(EditActivity.this, MainActivity.class);
-            startActivity(intent);
-
-            finish();
+            finish(); /* Una vez que los cambios han sido hechos finalizamos la actividad y se volvemos al MainActivity */
         }else{
             Toast.makeText(EditActivity.this, R.string.datos_requeridos, Toast.LENGTH_SHORT).show();
         }

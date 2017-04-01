@@ -33,30 +33,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
         navView = (NavigationView) findViewById(R.id.navView);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menu);
+
+        setSupportActionBar(toolbar); /* Coloca el toolbar en esta actividad */
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menu); /* Colocar el icono que servirá para abrir el menú al pulsarlo */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navView.setNavigationItemSelectedListener(this);
 
         fm = getSupportFragmentManager();
-        fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE); /* Limpiar la pila */
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { /* Método llamado cuando se pulsa sobre un ítem del toolbat */
         switch (item.getItemId()){
             case android.R.id.home:
-                drawer.openDrawer(GravityCompat.START);
+                drawer.openDrawer(GravityCompat.START); /* Abre el menú al pulsar sobre el icono */
                 break;
         }
         return true;
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) { /* Método llamado cuando se pulsa sobre un ítem del menú */
         switch (item.getItemId()){
 
             case R.id.item_perfil:
@@ -97,10 +97,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
         }
-        item.setChecked(true);
-        getSupportActionBar().setTitle(item.getTitle());
-        drawer.closeDrawers();
+        item.setChecked(true); /* Marca el ítem seleccionado como el actual */
+        getSupportActionBar().setTitle(item.getTitle()); /* Coloca en la toolbar el título del fragment cargado */
+        drawer.closeDrawers(); /* Al pulsar sobre cualquier ítem se cierra el menú */
         return true;
     }
 
+    @Override
+    protected void onResume() { /* Método invocado cuando se vuelve de EditActivity, se carga PerfilFragment para actualizar los cambios efectuados */
+        super.onResume();
+        PerfilFragment perfilFragment = PerfilFragment.newInstance();
+        fm.beginTransaction().replace(R.id.container,perfilFragment).commit();
+
+    }
 }

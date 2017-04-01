@@ -30,7 +30,7 @@ public class ObjetosFragment extends Fragment implements AdapterView.OnItemClick
 
     public static ObjetosFragment newInstance() {
         return new ObjetosFragment();
-    }
+    } /* Método utilizado para crear una instancia del fragment */
 
 
     @Override

@@ -17,7 +17,7 @@ public class AjustesFragment extends Fragment {
 
     public static AjustesFragment newInstance(){
         return new AjustesFragment();
-    }
+    } /* Método utilizado para crear una instancia del fragment */
 
 
     @Override

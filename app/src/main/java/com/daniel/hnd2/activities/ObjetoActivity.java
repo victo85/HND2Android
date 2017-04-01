@@ -31,7 +31,7 @@ public class ObjetoActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_objeto);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar); /* Coloca el toolbar en esta actividad */
 
         ObjetoBean objetoBean = (ObjetoBean) getIntent().getSerializableExtra(ObjetosFragment.OBJETO_KEY);
 
