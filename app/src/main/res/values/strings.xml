@@ -24,4 +24,8 @@
     <string name="usuario_no_existe">No existe el usuario</string>
     <string name="compartir_en">Compartir en...</string>
     <string name="usuario_guardado">El usuario se ha guardado correctamente</string>
+    <string name="version">Version 1.0</string>
+    <string name="desarrollado">Desarrollado por Daniel Plata</string>
+    <string name="contacto">Contacto: daniel_plata_apps1m1617@cev.com</string>
+    <string name="descripcionJuego">Juego de naves para dispositivos móviles. Está compuesto de varios niveles en los que va aumentando la dificultad. La misión es derrotar a todas las naves enemigas que van apareciendo en pantalla, hasta llegar al nivel del Boss.</string>
 </resources>
