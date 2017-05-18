@@ -9,6 +9,10 @@ import com.daniel.hnd2.beans.ResponsePersonajes;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Created by ALUMNOS on 16/05/2017.
  */
