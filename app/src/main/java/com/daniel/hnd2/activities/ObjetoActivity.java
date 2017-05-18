@@ -1,6 +1,7 @@
 package com.daniel.hnd2.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daniel.hnd2.R;
+import com.daniel.hnd2.api.ApiObjetos;
 import com.daniel.hnd2.beans.ObjetoBean;
 import com.daniel.hnd2.fragments.ObjetosFragment;
 
@@ -50,9 +53,10 @@ public class ObjetoActivity extends AppCompatActivity implements View.OnClickLis
 
         detalle = "Nombre: " + objetoBean.getNombre() + ", Descripcion: " + objetoBean.getDescripcion();
 
-        txtNombre.setText(objetoBean.getNombre());
-        txtDescripcion.setText(objetoBean.getDescripcion());
-        imgObjeto.setImageDrawable(ContextCompat.getDrawable(this,objetoBean.getImagenObjeto()));
+        Hilo hilo = new Hilo();
+        hilo.execute();
+
+
     }
 
     @Override
@@ -88,6 +92,37 @@ public class ObjetoActivity extends AppCompatActivity implements View.OnClickLis
                 intentWhatsapp.setPackage("com.whatsapp");
                 startActivity(intentWhatsapp);
                 break;
+        }
+    }
+
+    private class Hilo extends AsyncTask<Integer, Void, ObjetoBean> {
+
+        @Override
+        protected ObjetoBean doInBackground(Integer... args) {
+
+            int id = args[0];
+            ApiObjetos apiObjetos = new ApiObjetos();
+            ObjetoBean objetoBean = apiObjetos.getObjeto(id);
+
+            return objetoBean;
+        }
+
+        @Override
+        protected void onPostExecute(ObjetoBean objetoBean) {
+            super.onPostExecute(objetoBean);
+
+            if(objetoBean == null){
+
+                Toast.makeText(ObjetoActivity.this, "No se pudo realizar la petición", Toast.LENGTH_SHORT).show();
+
+            }else{
+
+                txtNombre.setText(objetoBean.getNombre());
+                txtDescripcion.setText(objetoBean.getDescripcion());
+                imgObjeto.setImageDrawable(ContextCompat.getDrawable(ObjetoActivity.this,objetoBean.getImagenObjeto()));
+
+            }
+
         }
     }
 }

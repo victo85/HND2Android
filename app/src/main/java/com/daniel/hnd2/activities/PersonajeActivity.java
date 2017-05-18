@@ -1,6 +1,7 @@
 package com.daniel.hnd2.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daniel.hnd2.R;
+import com.daniel.hnd2.adapters.PersonajesAdapter;
+import com.daniel.hnd2.api.ApiPersonajes;
 import com.daniel.hnd2.beans.PersonajeBean;
 import com.daniel.hnd2.fragments.PersonajesFragment;
 
@@ -52,11 +56,10 @@ public class PersonajeActivity extends AppCompatActivity implements View.OnClick
 
         detalle = "Nombre: " + personajeBean.getNombre() + ", Descripcion: " + personajeBean.getDescripcion() + ", Poder: " + personajeBean.getPoder() + ", Arma: " + personajeBean.getArma();
 
-        txtNombre.setText(personajeBean.getNombre());
-        txtDescripcion.setText(personajeBean.getDescripcion());
-        txtPoder.setText(personajeBean.getPoder());
-        txtArma.setText(personajeBean.getArma());
-        imgPersonaje.setImageDrawable(ContextCompat.getDrawable(this,personajeBean.getImgPersonaje()));
+        Hilo hilo = new Hilo();
+        hilo.execute();
+
+
     }
 
     @Override
@@ -94,4 +97,38 @@ public class PersonajeActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
+    private class Hilo extends AsyncTask<Integer, Void, PersonajeBean> {
+
+        @Override
+        protected PersonajeBean doInBackground(Integer... args) {
+
+            int id = args[0];
+            ApiPersonajes apiPersonajes = new ApiPersonajes();
+            PersonajeBean personajeBean = apiPersonajes.getPersonaje(id);
+
+            return personajeBean;
+        }
+
+        @Override
+        protected void onPostExecute(PersonajeBean personajeBean) {
+            super.onPostExecute(personajeBean);
+
+            if(personajeBean == null){
+
+                Toast.makeText(PersonajeActivity.this, "No se pudo realizar la petición", Toast.LENGTH_SHORT).show();
+
+            }else{
+
+                txtNombre.setText(personajeBean.getNombre());
+                txtDescripcion.setText(personajeBean.getDescripcion());
+                txtPoder.setText(personajeBean.getPoder());
+                txtArma.setText(personajeBean.getArma());
+                imgPersonaje.setImageDrawable(ContextCompat.getDrawable(PersonajeActivity.this,personajeBean.getImgPersonaje()));
+
+            }
+
+        }
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.daniel.hnd2.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daniel.hnd2.R;
+import com.daniel.hnd2.api.ApiTips;
 import com.daniel.hnd2.beans.ObjetoBean;
 import com.daniel.hnd2.beans.TipBean;
 import com.daniel.hnd2.fragments.ObjetosFragment;
@@ -48,9 +52,8 @@ public class TipActivity extends AppCompatActivity implements View.OnClickListen
 
         detalle = "Titulo: " + tipBean.getTitulo() + ", Detalle: " + tipBean.getDetalle();
 
-        txtTitulo.setText(tipBean.getTitulo());
-        txtDetalle.setText(tipBean.getDetalle());
-
+        Hilo hilo = new Hilo();
+        hilo.execute();
 
     }
 
@@ -89,6 +92,35 @@ public class TipActivity extends AppCompatActivity implements View.OnClickListen
                 intentWhatsapp.setPackage("com.whatsapp");
                 startActivity(intentWhatsapp);
                 break;
+        }
+    }
+
+    private class Hilo extends AsyncTask<Integer, Void, TipBean> {
+
+        @Override
+        protected TipBean doInBackground(Integer... args) {
+
+            int id = args[0];
+            ApiTips apiTips = new ApiTips();
+            TipBean tipBean = apiTips.getTip(id);
+
+            return tipBean;
+        }
+
+        @Override
+        protected void onPostExecute(TipBean tipBean) {
+            super.onPostExecute(tipBean);
+
+            if(tipBean == null){
+
+                Toast.makeText(TipActivity.this, "No se pudo realizar la petición", Toast.LENGTH_SHORT).show();
+
+            }else{
+
+                txtTitulo.setText(tipBean.getTitulo());
+                txtDetalle.setText(tipBean.getDetalle());
+
+            }
         }
     }
 }
